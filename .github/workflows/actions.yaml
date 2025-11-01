@@ -5,6 +5,7 @@ on:
   push:            # Trigger workflow when code is pushed
     branches:
       - Main       # Runs only when pushing to 'main' branch
+      - New
 
 jobs:
   Actions:           # Name of the job
