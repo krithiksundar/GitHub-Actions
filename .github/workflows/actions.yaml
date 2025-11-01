@@ -8,7 +8,7 @@ on:
       - New
 
 jobs:
-  Actions:           # Name of the job
+  Action:           # Name of the job
     runs-on: ubuntu-latest   # The virtual environment (Ubuntu, Windows, macOS)
 
     steps:
