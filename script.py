@@ -1,10 +1,9 @@
-# write_to_file.py
+import os
 
-# Define the message to write
-message = "Hello! This is a simple test output written to test.txt."
+repo_dir = os.getcwd()  # current GitHub workspace
+file_path = os.path.join(repo_dir, "test.txt")
 
-# Open (or create) test.txt in write mode
-with open("test.txt", "w") as file:
-    file.write(message)
+with open(file_path, "w") as f:
+    f.write("Hello from GitHub Actions!\n")
 
-print("✅ Output written successfully to test.txt")
+print(f"✅ Output written successfully to {file_path}")
