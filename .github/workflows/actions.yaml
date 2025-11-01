@@ -5,9 +5,10 @@ on:
   push:            # Trigger workflow when code is pushed
     branches:
       - Main       # Runs only when pushing to 'main' branch
+      - New
 
 jobs:
-  Actions:           # Name of the job
+  Action:           # Name of the job
     runs-on: ubuntu-latest   # The virtual environment (Ubuntu, Windows, macOS)
 
     steps:
@@ -21,4 +22,17 @@ jobs:
 
       - name: Run Code
         run: python script.py
+
+      - name: Commit and push changes
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          echo "Pushing updates to branch ${{ github.ref_name }}"
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add test.txt
+          git commit -m "Automated publish via GitHub Actions" || echo "No changes"
+          git push origin HEAD:${{ github.ref_name }}
+
+        
 
