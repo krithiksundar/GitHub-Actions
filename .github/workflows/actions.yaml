@@ -23,11 +23,16 @@ jobs:
       - name: Run Code
         run: python script.py
 
-      - name: Publish changes back to repo
-        uses: mikeal/publish-to-github-action@v1
+      - name: Commit and push changes
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          BRANCH_NAME: ${{ github.ref_name }}
+        run: 
+          echo "Pushing updates to branch ${{ github.ref_name }}"
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add test.txt
+          git commit -m "Automated publish via GitHub Actions" || echo "No changes"
+          git push origin HEAD:${{ github.ref_name }}
+
         
 
