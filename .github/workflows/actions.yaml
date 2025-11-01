@@ -24,7 +24,7 @@ jobs:
         run: python script.py
 
       - name: Publish changes back to repo
-        uses: mikeal/publish-to-github-action@master
+        uses: mikeal/publish-to-github-action@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
