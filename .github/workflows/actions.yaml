@@ -1,0 +1,24 @@
+
+name: My First Action # Name of your workflow (appears in GitHub Actions tab)
+
+on:
+  push:            # Trigger workflow when code is pushed
+    branches:
+      - main       # Runs only when pushing to 'main' branch
+
+jobs:
+  Actions Job:           # Name of the job
+    runs-on: ubuntu-latest   # The virtual environment (Ubuntu, Windows, macOS)
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4   # Step 1: Fetch repository code
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'    # Specify your Python version
+
+      - name: Run Code
+        run: python script.py
+
